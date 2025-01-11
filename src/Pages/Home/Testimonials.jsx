@@ -1,68 +1,84 @@
 import React from 'react';
 
-const Testimonials = () => {
-    const feedbacks = [
-        {
-            id: 1,
-            name: "Sarah",
-            image: "https://i.ibb.co/Cw8sY1M/environment-volunteer-concept-with-women-holding-boxes-donations.jpg",
-            review: "Volunteering here has been an amazing experience. I learned so much and made great connections. It's been truly fulfilling to help others in need.",
-        },
-        {
-            id: 2,
-            name: "Michael",
-            image: "https://i.ibb.co/Cw8sY1M/environment-volunteer-concept-with-women-holding-boxes-donations.jpg",
-            review: "A very fulfilling experience. I was able to give back to the community and meet wonderful people. It has made a lasting impact on me.",
-        },
-        {
-            id: 3,
-            name: "Jessica",
-            image: "https://i.ibb.co/Cw8sY1M/environment-volunteer-concept-with-women-holding-boxes-donations.jpg",
-            review: "I highly recommend volunteering. It's a rewarding experience that helps both you and your community. I’ve made lifelong friendships through these initiatives.",
-        },
-        {
-            id: 4,
-            name: "David",
-            image: "https://i.ibb.co/Cw8sY1M/environment-volunteer-concept-with-women-holding-boxes-donations.jpg",
-            review: "Volunteering here allowed me to discover new skills and contribute meaningfully to society. The team is fantastic and welcoming.",
-        },
-        {
-            id: 5,
-            name: "Olivia",
-            image: "https://i.ibb.co/Cw8sY1M/environment-volunteer-concept-with-women-holding-boxes-donations.jpg",
-            review: "Being a volunteer has opened my eyes to the challenges people face. It’s a heartwarming experience that I encourage everyone to try.",
-        },
-        {
-            id: 6,
-            name: "James",
-            image: "https://i.ibb.co/Cw8sY1M/environment-volunteer-concept-with-women-holding-boxes-donations.jpg",
-            review: "I never expected volunteering to change my perspective so drastically. The work we did was impactful, and it was a great way to give back.",
-        },
-    ];
+// Example testimonial data
+const testimonials = [
+  {
+    name: "John Doe",
+    title: "Volunteer",
+    feedback: "This volunteering opportunity was an incredible experience. I loved helping the community and meeting new people!",
+    image: "https://randomuser.me/api/portraits/men/1.jpg",
+  },
+  {
+    name: "Jane Smith",
+    title: "Volunteer",
+    feedback: "The work was rewarding, and I gained so many new skills. I'm so grateful for the chance to contribute to such a meaningful cause.",
+    image: "https://randomuser.me/api/portraits/women/2.jpg",
+  },
+  {
+    name: "Alice Johnson",
+    title: "Volunteer",
+    feedback: "I truly enjoyed being part of the team and the positive impact we made. I recommend volunteering to anyone who wants to give back to the community.",
+    image: "https://randomuser.me/api/portraits/women/3.jpg",
+  },
+  {
+    name: "Michael Clark",
+    title: "Volunteer",
+    feedback: "A fantastic way to give back! Volunteering here has been an incredibly fulfilling experience.",
+    image: "https://randomuser.me/api/portraits/men/4.jpg",
+  },
+  {
+    name: "Emily Davis",
+    title: "Volunteer",
+    feedback: "It was a life-changing experience to be part of such an amazing team. I learned a lot and made lifelong friendships.",
+    image: "https://randomuser.me/api/portraits/women/5.jpg",
+  },
+  {
+    name: "Chris Williams",
+    title: "Volunteer",
+    feedback: "The cause is close to my heart, and the work was so fulfilling. I highly recommend volunteering here to anyone.",
+    image: "https://randomuser.me/api/portraits/men/6.jpg",
+  },
+];
 
-    return (
-        <div className="w-full py-16 bg-gradient-to-r from-blue-500 to-teal-500">
-            <div className="max-w-6xl mx-auto text-center text-white">
-                <h2 className="text-3xl font-bold mb-8">What Volunteers Say</h2>
-                <div className="flex flex-wrap justify-center gap-8">
-                    {feedbacks.map((feedback) => (
-                        <div 
-                            key={feedback.id} 
-                            className="bg-white p-6 rounded-xl shadow-lg max-w-xs w-full sm:w-80 transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:translate-y-2"
-                        >
-                            <img 
-                                src={feedback.image} 
-                                alt={feedback.name} 
-                                className="w-16 h-16 rounded-full mx-auto border-4 border-blue-500 transform transition-all duration-300 hover:scale-110"
-                            />
-                            <h3 className="mt-4 text-xl font-semibold text-gray-800">{feedback.name}</h3>
-                            <p className="mt-2 text-gray-600">{feedback.review}</p>
-                        </div>
-                    ))}
+const Testimonials = () => {
+  return (
+    <div className="bg-gray-50 py-12">
+      <div className="max-w-6xl mx-auto px-4">
+        <h2 className="lg:text-3xl text-2xl font-bold text-center text-[#1C5253] mb-8">
+          𝑾𝒉𝒂𝒕 𝑶𝒖𝒓 𝑽𝒐𝒍𝒖𝒏𝒕𝒆𝒆𝒓𝒔 𝑺𝒂𝒚
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <div
+              key={index}
+              className="bg-white p-6 rounded-lg shadow-lg"
+              style={{
+                animation: "fadeIn 1s ease-in-out",
+                animationDelay: `${index * 0.3}s`,
+                animationFillMode: "forwards",
+                opacity: 0,
+              }}
+            >
+              <div className="flex items-center mb-4">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="w-16 h-16 rounded-full mr-4"
+                />
+                <div>
+                  <h3 className="text-xl font-semibold">{testimonial.name}</h3>
+                  <p className="text-gray-600">{testimonial.title}</p>
                 </div>
+              </div>
+              <p className="text-gray-700 text-lg italic">
+                "{testimonial.feedback}"
+              </p>
             </div>
+          ))}
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Testimonials;

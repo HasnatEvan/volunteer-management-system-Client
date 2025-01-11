@@ -2,11 +2,13 @@ import { useContext, useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "../Context/AuthContext";
+import logo from '../../src/assets/logo/logo.jpg';
 
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isDarkTheme, setIsDarkTheme] = useState(false);  // Track theme state
+    const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false); // Profile dropdown state
+    const [isDarkTheme, setIsDarkTheme] = useState(false); // Track theme state
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -21,6 +23,7 @@ const Navbar = () => {
     };
 
     const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+    const toggleProfileDropdown = () => setIsProfileDropdownOpen(!isProfileDropdownOpen); // Toggle profile dropdown
 
     // Toggle theme when checkbox is clicked
     const handleThemeChange = (e) => {
@@ -54,7 +57,7 @@ const Navbar = () => {
     );
 
     return (
-        <div className="navbar bg-[#1C5253] shadow-lg rounded-b-xl">
+        <div className="navbar bg-[#1C5253] max-w-screen-xl mx-auto shadow-lg sticky top-0 z-50">
             {/* Navbar Start */}
             <div className="navbar-start">
                 {/* Mobile Menu */}
@@ -89,7 +92,7 @@ const Navbar = () => {
                         {user && (
                             <li className="relative">
                                 <button
-                                    onClick={toggleDropdown}
+                                    onClick={toggleProfileDropdown}
                                     className="hover:text-[#1C5253] text-white transition-all flex items-center"
                                     title={user?.displayName || "My Profile"}
                                 >
@@ -104,69 +107,43 @@ const Navbar = () => {
                                     )}
                                     My Profile
                                 </button>
-                                {isDropdownOpen && (
-                                    <ul className="p-2 absolute left-0 top-full bg-base-200 rounded-lg shadow-lg z-20">
+                                {isProfileDropdownOpen && (
+                                    <ul className="p-2 absolute left-0 top-full bg-[#2D3748] text-[#E2E8F0] rounded-lg shadow-lg z-20">
                                         <li>
-                                            <NavLink to="/add-post" className="hover:text-[#1C5253]">
+                                            <NavLink
+                                                to="/add-post"
+                                                className="block px-4 py-2 hover:bg-[#1C5253] hover:text-white transition-all rounded"
+                                                onClick={() => setIsProfileDropdownOpen(false)} // Close dropdown when clicked
+                                            >
                                                 Add Volunteer Need Post
                                             </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink to="/manage-posts" className="hover:text-[#1C5253]">
+                                            <NavLink
+                                                to="/manage-posts"
+                                                className="block px-4 py-2 hover:bg-[#1C5253] hover:text-white transition-all rounded"
+                                                onClick={() => setIsProfileDropdownOpen(false)} // Close dropdown when clicked
+                                            >
                                                 Manage My Posts
                                             </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink to="/edit-profile" className="hover:text-[#1C5253]">
+                                            <NavLink
+                                                to="/edit-profile"
+                                                className="block px-4 py-2 hover:bg-[#1C5253] hover:text-white transition-all rounded"
+                                                onClick={() => setIsProfileDropdownOpen(false)} // Close dropdown when clicked
+                                            >
                                                 Edit Profile
                                             </NavLink>
                                         </li>
                                         <li>
                                             <button
                                                 onClick={handleLogout}
-                                                className="hover:text-[#1C5253] transition-all px-4 py-2 bg-white text-[#1C5253] rounded-md w-full"
+                                                className="block px-4 py-2 hover:bg-[#1C5253] hover:text-white transition-all rounded"
                                             >
                                                 Logout
                                             </button>
                                         </li>
-                                        {/* Theme Toggle */}
-                                        <label className="flex cursor-pointer gap-2">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="20"
-                                                height="20"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            >
-                                                <circle cx="12" cy="12" r="5" />
-                                                <path
-                                                    d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"
-                                                />
-                                            </svg>
-                                            <input
-                                                type="checkbox"
-                                                checked={isDarkTheme}
-                                                onChange={handleThemeChange}
-                                                className="toggle theme-controller"
-                                            />
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="20"
-                                                height="20"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            >
-                                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                                            </svg>
-                                        </label>
                                     </ul>
                                 )}
                             </li>
@@ -177,9 +154,13 @@ const Navbar = () => {
                 {/* Logo */}
                 <NavLink
                     to="/"
-                    className="btn btn-ghost text-xl font-bold text-white tracking-wider uppercase"
+                    className="btn btn-ghost flex items-center gap-2 text-xl font-bold text-white tracking-wider uppercase"
                 >
-                    Volunteer Management
+                    <img
+                        src={logo}
+                        alt="Volunteer Management Logo"
+                        className="w-12 h-12 border-[#B5AD3C] border-2 rounded-full"
+                    />
                 </NavLink>
             </div>
 
@@ -190,7 +171,7 @@ const Navbar = () => {
                     {user && (
                         <li className="relative">
                             <button
-                                onClick={toggleDropdown}
+                                onClick={toggleProfileDropdown}
                                 className="hover:text-[#1C5253] transition-all flex items-center"
                                 title={user?.displayName || "My Profile"}
                             >
@@ -205,69 +186,43 @@ const Navbar = () => {
                                 )}
                                 My Profile
                             </button>
-                            {isDropdownOpen && (
-                                <ul className="p-2 absolute left-0 top-full bg-base-200 rounded-lg shadow-lg z-20">
+                            {isProfileDropdownOpen && (
+                                <ul className="p-2 absolute left-0 top-full bg-[#2D3748] text-[#E2E8F0] rounded-lg shadow-lg z-20">
                                     <li>
-                                        <NavLink to="/add-post" className="hover:text-[#1C5253]">
+                                        <NavLink
+                                            to="/add-post"
+                                            className="block px-4 py-2 hover:bg-[#1C5253] hover:text-white transition-all rounded"
+                                            onClick={() => setIsProfileDropdownOpen(false)} // Close dropdown when clicked
+                                        >
                                             Add Volunteer Need Post
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/manage-posts" className="hover:text-[#1C5253]">
+                                        <NavLink
+                                            to="/manage-posts"
+                                            className="block px-4 py-2 hover:bg-[#1C5253] hover:text-white transition-all rounded"
+                                            onClick={() => setIsProfileDropdownOpen(false)} // Close dropdown when clicked
+                                        >
                                             Manage My Posts
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/edit-profile" className="hover:text-[#1C5253]">
+                                        <NavLink
+                                            to="/edit-profile"
+                                            className="block px-4 py-2 hover:bg-[#1C5253] hover:text-white transition-all rounded"
+                                            onClick={() => setIsProfileDropdownOpen(false)} // Close dropdown when clicked
+                                        >
                                             Edit Profile
                                         </NavLink>
                                     </li>
                                     <li>
                                         <button
                                             onClick={handleLogout}
-                                            className="hover:text-[#1C5253] transition-all px-4 py-2 bg-white text-[#1C5253] rounded-md w-full"
+                                            className="block px-4 py-2 hover:bg-[#1C5253] hover:text-white transition-all rounded"
                                         >
                                             Logout
                                         </button>
                                     </li>
-                                    {/* Theme Toggle */}
-                                    <label className="flex cursor-pointer gap-2">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="20"
-                                            height="20"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        >
-                                            <circle cx="12" cy="12" r="5" />
-                                            <path
-                                                d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"
-                                            />
-                                        </svg>
-                                        <input
-                                            type="checkbox"
-                                            checked={isDarkTheme}
-                                            onChange={handleThemeChange}
-                                            className="toggle theme-controller"
-                                        />
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="20"
-                                            height="20"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        >
-                                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                                        </svg>
-                                    </label>
                                 </ul>
                             )}
                         </li>
@@ -280,7 +235,7 @@ const Navbar = () => {
                 {user ? (
                     <button
                         onClick={handleLogout}
-                        className="btn bg-[#1C5253] text-white hover:bg-[#1C5253] transition-all text-sm px-3 py-2"
+                        className="btn bg-[#1C5253] text-white hover:bg-[#1A3D3A] border-[#B5AD3C] transition-all text-sm px-4 py-1.5 rounded-full font-semibold"
                     >
                         Log out
                     </button>
@@ -288,13 +243,13 @@ const Navbar = () => {
                     <>
                         <NavLink
                             to="/login"
-                            className="btn bg-[#1C5253] text-white hover:bg-[#1C5253] transition-all text-sm px-3 py-2"
+                            className="btn bg-[#1C5253] text-white hover:bg-[#1A3D3A] border-[#B5AD3C] transition-all text-sm px-4 py-1.5 rounded-full font-semibold"
                         >
                             Login
                         </NavLink>
                         <NavLink
                             to="/register"
-                            className="btn bg-[#1C5253] text-white hover:bg-[#1C5253] transition-all text-sm px-3 py-2"
+                            className="btn bg-[#1C5253] text-white hover:bg-[#1A3D3A] transition-all border-[#B5AD3C] text-sm px-4 py-1.5 rounded-full font-semibold"
                         >
                             Register
                         </NavLink>

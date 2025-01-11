@@ -91,7 +91,7 @@ const AddVolunteer = () => {
 
     return (
         <div className="max-w-4xl mx-auto p-6 bg-gray-100 shadow-md rounded-md">
-            <h2 className="text-2xl font-bold text-center mb-6">Add Volunteer Post</h2>
+            <h2 className="text-2xl font-bold text-center text-[#1c585a] mb-6">𝑨𝒅𝒅 𝑽𝒐𝒍𝒖𝒏𝒕𝒆𝒆𝒓 𝑷𝒐𝒔𝒕</h2>
             <form className="space-y-4" onSubmit={handleSubmit}>
                 {/* Form fields */}
                 <div>

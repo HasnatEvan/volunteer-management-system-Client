@@ -1,59 +1,80 @@
-import React from 'react';
+import React from "react";
 
-const UpcomingEvent = () => {
-    const events = [
-        {
-            id: 1,
-            title: "Tree Plantation Drive",
-            date: "2025-01-10",
-            description: "Join us for a tree plantation drive in the city park. A green future starts with us.",
-            location: "City Park, Downtown",
-            time: "10:00 AM - 2:00 PM",
-        },
-        {
-            id: 2,
-            title: "Community Clean-up",
-            date: "2025-02-15",
-            description: "Let's come together to clean our local streets and parks for a cleaner environment.",
-            location: "Central Park, Midtown",
-            time: "8:00 AM - 12:00 PM",
-        },
-        {
-            id: 3,
-            title: "Beach Clean-up Drive",
-            date: "2025-03-20",
-            description: "Help us clean up the beaches and protect marine life from pollution.",
-            location: "Sunny Beach, West Coast",
-            time: "9:00 AM - 1:00 PM",
-        },
-    ];
+const events = [
+  {
+    title: "Community Clean-Up Drive",
+    date: "January 15, 2025",
+    description: "Join us in making our neighborhood cleaner and greener! Bring your friends and family along.",
+    image: "https://i.ibb.co/f0KPby1/full-shot-people-collecting-garbage.jpg",
+  },
+  {
+    title: "Food Donation Camp",
+    date: "January 22, 2025",
+    description: "Help us distribute food to those in need. Your small contribution can make a big difference.",
+    image: "https://i.ibb.co/C7fbK8F/smiley-female-volunteer-holding-box-with-food-donations.jpg",
+  },
+  {
+    title: "Blood Donation Campaign",
+    date: "February 5, 2025",
+    description: "Be a hero by donating blood and saving lives. Register now to secure your spot.",
+    image: "https://i.ibb.co/cXnZBtk/1352.jpg",
+  },
+];
 
-    return (
-        <div className="w-full py-16 bg-gradient-to-r from-green-400 to-teal-500">
-            <div className="max-w-6xl mx-auto text-center text-white">
-                <h2 className="text-3xl font-bold mb-8">Upcoming Volunteer Events</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {events.map((event) => (
-                        <div 
-                            key={event.id} 
-                            className="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:translate-y-2"
-                        >
-                            <h3 className="text-2xl font-semibold text-gray-800">{event.title}</h3>
-                            <p className="mt-2 text-gray-600"><strong>Date:</strong> {event.date}</p>
-                            <p className="mt-2 text-gray-600"><strong>Time:</strong> {event.time}</p>
-                            <p className="mt-2 text-gray-600"><strong>Location:</strong> {event.location}</p>
-                            <p className="mt-4 text-gray-800">{event.description}</p>
-                            <button 
-                                className="mt-6 py-2 px-4 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-all duration-300 transform hover:scale-105"
-                            >
-                                More Info
-                            </button>
-                        </div>
-                    ))}
-                </div>
+const UpcommingEvent = () => {
+  const fadeInStyle = {
+    animation: "fadeIn 1.5s ease-in-out",
+  };
+
+  const hoverEffect = {
+    transform: "scale(1.05)",
+    boxShadow: "0 10px 20px rgba(0,0,0,0.3)",
+    transition: "transform 0.3s, box-shadow 0.3s",
+  };
+
+  const defaultEffect = {
+    transform: "scale(1)",
+    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+    transition: "transform 0.3s, box-shadow 0.3s",
+  };
+
+  return (
+    <div style={fadeInStyle} className="bg-gray-50 py-12">
+      <div className="max-w-6xl mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center text-[#1C5253] mb-8">
+          𝑼𝒑𝒄𝒐𝒎𝒊𝒏𝒈 𝑬𝒗𝒆𝒏𝒕𝒔
+        </h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {events.map((event, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-lg overflow-hidden"
+              style={defaultEffect}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = hoverEffect.transform;
+                e.currentTarget.style.boxShadow = hoverEffect.boxShadow;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = defaultEffect.transform;
+                e.currentTarget.style.boxShadow = defaultEffect.boxShadow;
+              }}
+            >
+              <img
+                src={event.image}
+                alt={event.title}
+                className="w-full h-60 object-cover" // Updated height to h-60
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
+                <p className="text-gray-500 text-sm mb-4">{event.date}</p>
+                <p className="text-gray-700">{event.description}</p>
+              </div>
             </div>
+          ))}
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
-export default UpcomingEvent;
+export default UpcommingEvent;

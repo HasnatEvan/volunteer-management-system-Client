@@ -9,7 +9,7 @@ import {
     signInWithPopup,
     signOut,
     updateProfile,
-    updateEmail, // Import updateEmail
+    updateEmail,
 } from "firebase/auth";
 import axios from "axios";
 
@@ -19,87 +19,105 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    // Create user with email and password
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     };
 
+    // Log in with email and password
     const logIn = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     };
 
-    const logInWithGoogle = () => {
+    // Log in with Google
+    const logInWithGoogle = async () => {
         setLoading(true);
-        return signInWithPopup(auth, googleProvider)
-            .then((result) => {
-                setUser(result.user); // Update user state
-                return result;
-            })
-            .catch((error) => {
-                console.error("Google Login Error:", error.message);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            setUser(result.user);
+            return result;
+        } catch (error) {
+            console.error("Google Login Error:", error.message);
+            throw error;
+        } finally {
+            setLoading(false);
+        }
     };
 
+    // Logout user
     const logout = () => {
         setLoading(true);
-        return signOut(auth).finally(() => setLoading(false));
+        return signOut(auth)
+            .then(() => setUser(null))
+            .finally(() => setLoading(false));
     };
 
-    // Update user profile function
+    // Update user profile
     const updateUser = async (userData) => {
         try {
+            const currentUser = auth.currentUser;
+
             // Update displayName if provided
             if (userData.displayName) {
-                await updateProfile(auth.currentUser, {
+                await updateProfile(currentUser, {
                     displayName: userData.displayName,
                 });
             }
 
             // Update email if provided
             if (userData.email) {
-                await updateEmail(auth.currentUser, userData.email);
+                await updateEmail(currentUser, userData.email);
             }
 
-            // Return updated user after successful profile update
-            return auth.currentUser;
+            // Return the updated user object
+            return currentUser;
         } catch (error) {
-            console.error("Error updating user:", error);
+            console.error("Error updating user:", error.message);
             throw error;
         }
     };
 
+    // Listen to auth state changes
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
             setUser(currentUser);
-            console.log("State captured:", currentUser?.email);
-            if(currentUser?.email){
-                const user={email:currentUser.email}
-                axios.post('https://volunteer-management-website-server.vercel.app/jwt',user,{ withCredentials:true})
-                .then(res=>{
-                    console.log('login token',res.data)
+
+            if (currentUser?.email) {
+                const userPayload = { email: currentUser.email };
+                try {
+                    const response = await axios.post(
+                        "https://volunteer-management-website-server.vercel.app/jwt",
+                        userPayload,
+                        { withCredentials: true }
+                    );
+                    console.log("Login token:", response.data);
+                } catch (error) {
+                    console.error("JWT token creation error:", error.message);
+                } finally {
                     setLoading(false);
-                })
-            }
-
-            else{
-                axios.post('https://volunteer-management-website-server.vercel.app/logout',{},{withCredentials:true})
-                .then(res=>{
-                    console.log('logout',res.data)
+                }
+            } else {
+                try {
+                    const response = await axios.post(
+                        "https://volunteer-management-website-server.vercel.app/logout",
+                        {},
+                        { withCredentials: true }
+                    );
+                    console.log("Logout response:", response.data);
+                } catch (error) {
+                    console.error("Logout error:", error.message);
+                } finally {
                     setLoading(false);
-                })
+                }
             }
-
-
-         
         });
 
         return () => unSubscribe();
     }, []);
 
+    // Provide auth context
     const authInfo = {
         user,
         loading,
@@ -107,7 +125,7 @@ const AuthProvider = ({ children }) => {
         logIn,
         logout,
         logInWithGoogle,
-        updateUser, // Corrected the function name here
+        updateUser,
     };
 
     return (

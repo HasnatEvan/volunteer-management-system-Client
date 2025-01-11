@@ -6,21 +6,18 @@ const AllVolunteerPost = () => {
     const volunteers = useLoaderData();
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const [isTableLayout, setIsTableLayout] = useState(false); // Layout toggle state
+    const [isTableLayout, setIsTableLayout] = useState(false);
 
-    const itemsPerPage = 6; // Items per page
+    const itemsPerPage = 6;
 
-    // Filter volunteers based on the title
     const filteredVolunteers = volunteers.filter((volunteer) =>
         volunteer.postTitle.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    // Pagination logic
     const totalPages = Math.ceil(filteredVolunteers.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const paginatedVolunteers = filteredVolunteers.slice(startIndex, startIndex + itemsPerPage);
 
-    // Toggle layout function
     const handleLayoutChange = () => {
         setIsTableLayout(!isTableLayout);
     };
@@ -28,22 +25,22 @@ const AllVolunteerPost = () => {
     return (
         <div className="container mx-auto px-6 py-10">
             {/* Page Title */}
-            <h1 className="text-4xl font-bold text-center mb-8 text-gray-800 tracking-wide">
-                All Volunteer Need Posts
+            <h1 className="text-2xl sm:text-4xl md:text-4xl font-bold text-center mb-8 text-[#1c585a] tracking-wide">
+                𝑨𝒍𝒍 𝑽𝒐𝒍𝒖𝒏𝒕𝒆𝒆𝒓 𝑵𝒆𝒆𝒅 𝑷𝒐𝒔𝒕𝒔
             </h1>
 
             {/* Search Input and Change Layout Button */}
-            <div className="flex justify-center items-center gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-6">
                 <input
                     type="text"
                     placeholder="Search by title"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-11/12 sm:w-1/2 md:w-1/3 p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+                    className="w-full sm:w-1/2 md:w-1/3 p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
                 />
                 <button
                     onClick={handleLayoutChange}
-                    className="px-6 py-3 bg-gradient-to-r from-[#1C5253] to-[#2A8F8F] text-white rounded-lg hover:from-[#2A8F8F] hover:to-[#1C5253] focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+                    className="px-6 py-3 mt-4 sm:mt-0 bg-gradient-to-r from-[#1C5253] to-[#2A8F8F] text-white rounded-lg hover:from-[#2A8F8F] hover:to-[#1C5253] focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
                 >
                     {isTableLayout ? "Switch to Grid View" : "Switch to Table View"}
                 </button>

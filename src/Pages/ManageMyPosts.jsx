@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import VolunteerRequestPosts from "./Components/VolunteerRequestPosts";
 import useAxios from "../hooks/useAxios";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 // Loading spinner component
 const LoadingSpinner = () => (
@@ -68,18 +69,18 @@ const ManageMyPosts = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold text-center mb-6">My Volunteer Posts</h1>
+      <h1 className="text-2xl font-bold text-[#1c585a] text-center mb-6">𝑴𝒚 𝑽𝒐𝒍𝒖𝒏𝒕𝒆𝒆𝒓 𝑷𝒐𝒔𝒕𝒔</h1>
       {volunteer.length === 0 ? (
         <div className="text-center text-lg text-gray-600">No volunteer posts available.</div>
       ) : (
         <div className="overflow-x-auto shadow-md sm:rounded-lg">
           <table className="min-w-full table-auto">
             <thead>
-              <tr className="bg-gray-100 border-b">
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-900">Post Title</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-900">Category</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-900">Deadline</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-900">Actions</th>
+              <tr className=" bg-gradient-to-r from-[#1C5253] to-[#2A8F8F] text-white border-b">
+                <th className="px-4 py-3 text-left text-sm font-medium sm:px-6">Post Title</th>
+                <th className="px-4 py-3 text-left text-sm font-medium sm:px-6">Category</th>
+                <th className="px-4 py-3 text-left text-sm font-medium sm:px-6">Deadline</th>
+                <th className="px-4 py-3 text-left text-sm font-medium sm:px-6">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -87,20 +88,20 @@ const ManageMyPosts = () => {
                 const { _id, postTitle, category, deadline } = post;
                 return (
                   <tr key={_id} className="border-b hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">{postTitle}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{category}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{new Date(deadline).toLocaleDateString()}</td>
-                    <td className="px-6 py-4 text-sm font-medium flex space-x-2">
+                    <td className="px-4 py-4 text-sm font-medium text-gray-900 sm:px-6">{postTitle}</td>
+                    <td className="px-4 py-4 text-sm text-gray-600 sm:px-6">{category}</td>
+                    <td className="px-4 py-4 text-sm text-gray-600 sm:px-6">{new Date(deadline).toLocaleDateString()}</td>
+                    <td className="px-4 py-4 text-sm font-medium flex space-x-2 sm:px-6">
                       <Link to={`/update/${_id}`}>
-                        <button className="text-blue-500 hover:text-blue-700 hover:bg-blue-100 px-4 py-2 rounded-md border border-blue-500 transition-all duration-300">
-                          Update
+                        <button className="bg-[#1c585a] text-white hover:text-white hover:bg-[#1c585a] px-4 py-2 rounded-md border border-[#1c585a] transition-all duration-300">
+                          <FaEdit className="inline mr-2" /> Update
                         </button>
                       </Link>
                       <button
                         onClick={() => handleDelete(_id)}
                         className="text-red-500 hover:text-red-700 hover:bg-red-100 px-4 py-2 rounded-md border border-red-500 transition-all duration-300"
                       >
-                        Delete
+                        <FaTrashAlt className="inline mr-2" /> Delete
                       </button>
                     </td>
                   </tr>

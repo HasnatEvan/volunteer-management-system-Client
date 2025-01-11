@@ -108,12 +108,12 @@ const VolunteerRequestPosts = () => {
 
     return (
         <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">My Volunteer Request Posts</h1>
+            <h1 className="text-2xl font-bold mb-4 text-center text-[#1c585a]">𝑴𝒚 𝑽𝒐𝒍𝒖𝒏𝒕𝒆𝒆𝒓 𝑹𝒆𝒒𝒖𝒆𝒔𝒕 𝑷𝒐𝒔𝒕𝒔</h1>
             {posts.length > 0 ? (
                 <div className="overflow-x-auto">
                     <table className="min-w-full table-auto border-collapse border border-gray-300">
                         <thead>
-                            <tr className="bg-gray-200">
+                            <tr className=" bg-gradient-to-r from-[#1C5253] to-[#2A8F8F] text-white ">
                                 <th className="border border-gray-300 px-4 py-2">Post Title</th>
                                 <th className="border border-gray-300 px-4 py-2">Category</th>
                                 <th className="border border-gray-300 px-4 py-2">Deadline</th>
