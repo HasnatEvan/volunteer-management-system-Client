@@ -15,7 +15,7 @@ const Banner = () => {
         autoplaySpeed: 3000,
         responsive: [
             {
-                breakpoint: 1024, // For large screens
+                breakpoint: 1024,
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
@@ -24,7 +24,7 @@ const Banner = () => {
                 },
             },
             {
-                breakpoint: 768, // For tablets
+                breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
@@ -33,7 +33,7 @@ const Banner = () => {
                 },
             },
             {
-                breakpoint: 480, // For small screens (mobile)
+                breakpoint: 480,
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
@@ -51,7 +51,7 @@ const Banner = () => {
             headline: "Join Hands for a Cause",
             subtitle: "Your contribution can change the world",
             actionText: "Explore Now",
-            actionLink: "/explore1",
+            actionLink: "/allPosts",
         },
         {
             id: 2,
@@ -59,7 +59,7 @@ const Banner = () => {
             headline: "Work for the Community",
             subtitle: "Together, we can make a difference",
             actionText: "Join Us",
-            actionLink: "/join-us",
+            actionLink: "/allPosts",
         },
         {
             id: 3,
@@ -67,12 +67,12 @@ const Banner = () => {
             headline: "Stronger Together",
             subtitle: "Our goal is success",
             actionText: "Learn More",
-            actionLink: "/learn-more",
+            actionLink: "/allPosts",
         },
     ];
 
     return (
-        <div className="w-full bg-gray-100">
+        <div className="w-full overflow-hidden relative z-0">
             <Slider {...sliderSettings}>
                 {banners.map((banner) => (
                     <div key={banner.id} className="relative">
