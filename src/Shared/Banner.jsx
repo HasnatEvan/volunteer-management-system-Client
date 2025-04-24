@@ -1,7 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
-import { Link } from 'react-router-dom';  // Import Link from react-router-dom
-import "slick-carousel/slick/slick.css";  
+import { Link } from 'react-router-dom';
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Banner = () => {
@@ -51,7 +51,7 @@ const Banner = () => {
             headline: "Join Hands for a Cause",
             subtitle: "Your contribution can change the world",
             actionText: "Explore Now",
-            actionLink: "/explore1",  // React Router path
+            actionLink: "/explore1",
         },
         {
             id: 2,
@@ -59,7 +59,7 @@ const Banner = () => {
             headline: "Work for the Community",
             subtitle: "Together, we can make a difference",
             actionText: "Join Us",
-            actionLink: "/join-us",  // React Router path
+            actionLink: "/join-us",
         },
         {
             id: 3,
@@ -67,7 +67,7 @@ const Banner = () => {
             headline: "Stronger Together",
             subtitle: "Our goal is success",
             actionText: "Learn More",
-            actionLink: "/learn-more",  // React Router path
+            actionLink: "/learn-more",
         },
     ];
 
@@ -76,16 +76,16 @@ const Banner = () => {
             <Slider {...sliderSettings}>
                 {banners.map((banner) => (
                     <div key={banner.id} className="relative">
-                        <img 
-                            src={banner.img} 
-                            alt={`Banner ${banner.id}`} 
+                        <img
+                            src={banner.img}
+                            alt={`Banner ${banner.id}`}
                             className="w-full h-[350px] sm:h-[500px] lg:h-[700px] object-cover"
                         />
                         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
-                            <h2 className="text-3xl font-bold">{banner.headline}</h2>
-                            <p className="text-lg mt-2">{banner.subtitle}</p>
-                            <Link 
-                                to={'/allPosts'}  // Use Link for navigation
+                            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center">{banner.headline}</h2>
+                            <p className="text-md sm:text-lg lg:text-xl mt-2 text-center">{banner.subtitle}</p>
+                            <Link
+                                to={banner.actionLink}
                                 className="mt-4 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full"
                             >
                                 {banner.actionText}
