@@ -20,7 +20,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="bg-white py-12">
+    <div className="bg-white py-12 -mb-10">
       <div className="max-w-4xl mx-auto px-6">
         <h2 className="text-3xl font-bold text-center text-[#1C5253] mb-8">
           𝑪𝒐𝒏𝒕𝒂𝒄𝒕 𝑼𝒔

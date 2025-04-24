@@ -65,7 +65,7 @@ const BeAVolunteerModal = () => {
     };
 
     return (
-        <form onSubmit={handleRequest} className="max-w-3xl mx-auto p-6 bg-gray-100 shadow-md rounded-md">
+        <form onSubmit={handleRequest} className="max-w-3xl mx-auto p-6 bg-white">
             <h2 className="text-2xl font-bold text-center mb-4">Be a Volunteer</h2>
             <div className="space-y-4">
                 {postDetails ? (

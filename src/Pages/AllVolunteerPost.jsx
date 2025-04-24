@@ -23,14 +23,14 @@ const AllVolunteerPost = () => {
     };
 
     return (
-        <div className="container mx-auto px-6 py-10">
+        <div className="container mx-auto px-6 py-10 bg-white">
             {/* Page Title */}
             <h1 className="text-2xl sm:text-4xl md:text-4xl font-bold text-center mb-8 text-[#1c585a] tracking-wide">
                 𝑨𝒍𝒍 𝑽𝒐𝒍𝒖𝒏𝒕𝒆𝒆𝒓 𝑵𝒆𝒆𝒅 𝑷𝒐𝒔𝒕𝒔
             </h1>
 
             {/* Search Input and Change Layout Button */}
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row justify-center bg-white items-center gap-4 mb-6">
                 <input
                     type="text"
                     placeholder="Search by title"
