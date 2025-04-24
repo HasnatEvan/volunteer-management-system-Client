@@ -135,6 +135,7 @@ const Navbar = () => {
                                 <ul className="p-2 absolute left-0 top-full bg-[#2D3748] text-[#E2E8F0] rounded-lg shadow-lg">
                                     <li><NavLink to="/add-post" onClick={() => setIsProfileDropdownOpen(false)}>Add Post</NavLink></li>
                                     <li><NavLink to="/manage-posts" onClick={() => setIsProfileDropdownOpen(false)}>Manage Posts</NavLink></li>
+                                    <li><NavLink to="/dashboard" onClick={() => setIsProfileDropdownOpen(false)}>DashBoard</NavLink></li>
                                     <li><NavLink to="/edit-profile" onClick={() => setIsProfileDropdownOpen(false)}>Edit Profile</NavLink></li>
                                     <li><button onClick={handleLogout}>Logout</button></li>
                                 </ul>
@@ -147,7 +148,7 @@ const Navbar = () => {
             {/* Navbar End */}
             <div className="navbar-end flex items-center gap-2">
                 {/* Theme Toggle */}
-                <label className="cursor-pointer label hidden sm:flex items-center text-white mr-2">
+                {/* <label className="cursor-pointer label hidden sm:flex items-center text-white mr-2">
                     <span className="mr-2">Dark Mode</span>
                     <input
                         type="checkbox"
@@ -155,7 +156,7 @@ const Navbar = () => {
                         onChange={handleThemeChange}
                         checked={isDarkTheme}
                     />
-                </label>
+                </label> */}
 
                 {user ? (
                     <button

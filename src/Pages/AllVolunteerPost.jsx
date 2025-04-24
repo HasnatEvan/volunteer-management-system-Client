@@ -36,7 +36,7 @@ const AllVolunteerPost = () => {
                     placeholder="Search by title"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full sm:w-1/2 md:w-1/3 p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+                    className="w-full sm:w-1/2 md:w-1/3 p-3 border bg-gray-100 border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
                 />
                 <button
                     onClick={handleLayoutChange}

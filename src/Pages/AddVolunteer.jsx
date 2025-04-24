@@ -1,20 +1,19 @@
 import React, { useContext, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import AuthContext from '../Context/AuthContext';
 import Swal from 'sweetalert2';
 
 const AddVolunteer = () => {
     const { user } = useContext(AuthContext);
     const [deadline, setDeadline] = useState(null);
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
 
-        // Get values from the form
         const url = form.url.value;
         const postTitle = form.postTitle.value;
         const description = form.description.value;
@@ -24,7 +23,6 @@ const AddVolunteer = () => {
         const organizerName = form.organizerName.value;
         const organizerEmail = form.organizerEmail.value;
 
-        // Form validation
         if (!url || !postTitle || !description || !category || !location || !volunteersNeeded || !deadline || !organizerName || !organizerEmail) {
             Swal.fire({
                 title: 'Error!',
@@ -35,7 +33,6 @@ const AddVolunteer = () => {
             return;
         }
 
-        // Form data
         const formData = {
             url,
             postTitle,
@@ -48,7 +45,6 @@ const AddVolunteer = () => {
             organizerEmail,
         };
 
-        // Fetch request to post the data
         fetch('https://volunteer-management-website-server.vercel.app/volunteers', {
             method: 'POST',
             headers: {
@@ -59,14 +55,12 @@ const AddVolunteer = () => {
         .then((res) => res.json())
         .then((data) => {
             if (data.insertedId) {
-                // Show success alert
                 Swal.fire({
                     title: 'Success!',
                     text: 'Volunteer post added successfully.',
                     icon: 'success',
                     confirmButtonText: 'Okay',
                 }).then(() => {
-                    // Navigate to allPosts after success
                     navigate('/allPosts');
                 });
             } else {
@@ -90,17 +84,16 @@ const AddVolunteer = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-6 bg-gray-100 shadow-md rounded-md">
+        <div className="max-w-4xl mx-auto p-6 bg-white">
             <h2 className="text-2xl font-bold text-center text-[#1c585a] mb-6">𝑨𝒅𝒅 𝑽𝒐𝒍𝒖𝒏𝒕𝒆𝒆𝒓 𝑷𝒐𝒔𝒕</h2>
             <form className="space-y-4" onSubmit={handleSubmit}>
-                {/* Form fields */}
                 <div>
                     <label className="block text-gray-700">Thumbnail URL:</label>
                     <input
                         type="text"
                         name="url"
                         placeholder="Enter thumbnail URL"
-                        className="w-full p-2 border rounded"
+                        className="w-full p-2 border rounded bg-gray-100"
                     />
                 </div>
                 <div>
@@ -109,7 +102,7 @@ const AddVolunteer = () => {
                         type="text"
                         name="postTitle"
                         placeholder="Enter title"
-                        className="w-full p-2 border rounded"
+                        className="w-full p-2 border rounded bg-gray-100"
                     />
                 </div>
                 <div>
@@ -117,12 +110,12 @@ const AddVolunteer = () => {
                     <textarea
                         name="description"
                         placeholder="Enter description"
-                        className="w-full p-2 border rounded"
+                        className="w-full p-2 border rounded bg-gray-100"
                     ></textarea>
                 </div>
                 <div>
                     <label className="block text-gray-700">Category:</label>
-                    <select name="category" className="w-full p-2 border rounded">
+                    <select name="category" className="w-full p-2 border rounded bg-gray-100">
                         <option value="">Select a category</option>
                         <option value="Healthcare">Healthcare</option>
                         <option value="Education">Education</option>
@@ -136,7 +129,7 @@ const AddVolunteer = () => {
                         type="text"
                         name="location"
                         placeholder="Enter location"
-                        className="w-full p-2 border rounded"
+                        className="w-full p-2 border rounded bg-gray-100"
                     />
                 </div>
                 <div>
@@ -145,7 +138,7 @@ const AddVolunteer = () => {
                         type="number"
                         name="volunteersNeeded"
                         placeholder="Enter number"
-                        className="w-full p-2 border rounded"
+                        className="w-full p-2 border rounded bg-gray-100"
                     />
                 </div>
                 <div>
@@ -155,7 +148,7 @@ const AddVolunteer = () => {
                         onChange={(date) => setDeadline(date)}
                         dateFormat="yyyy-MM-dd"
                         placeholderText="Select deadline"
-                        className="w-full p-2 border rounded"
+                        className="w-full p-2 border rounded bg-gray-100"
                     />
                 </div>
                 <div>
@@ -180,7 +173,7 @@ const AddVolunteer = () => {
                 </div>
                 <button
                     type="submit"
-                    className="w-full p-3 bg-gradient-to-r from-[#1C5253] to-[#2A8F8F] text-white font-bold rounded hover:bg-gradient-to-r hover:from-[#FF6347] hover:to-[#FF4500]"
+                    className="w-full p-3 bg-gradient-to-r from-[#1C5253] to-[#2A8F8F] text-white font-bold rounded hover:from-[#FF6347] hover:to-[#FF4500] transition duration-300"
                 >
                     Add Post
                 </button>

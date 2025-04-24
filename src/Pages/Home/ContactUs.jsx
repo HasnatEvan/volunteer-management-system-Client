@@ -25,10 +25,7 @@ const ContactUs = () => {
         <h2 className="text-3xl font-bold text-center text-[#1C5253] mb-8">
           𝑪𝒐𝒏𝒕𝒂𝒄𝒕 𝑼𝒔
         </h2>
-        <form
-          onSubmit={handleSubmit}
-          className="bg-white p-8"
-        >
+        <form onSubmit={handleSubmit} className="bg-white p-8">
           <div className="mb-4">
             <label
               htmlFor="name"
@@ -42,7 +39,7 @@ const ContactUs = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1C5253] focus:border-transparent"
+              className="w-full px-4 py-2 border rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#1C5253] focus:border-transparent"
               placeholder="Your Name"
               required
             />
@@ -60,7 +57,7 @@ const ContactUs = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1C5253] focus:border-transparent"
+              className="w-full px-4 py-2 border rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#1C5253] focus:border-transparent"
               placeholder="Your Email"
               required
             />
@@ -77,7 +74,7 @@ const ContactUs = () => {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1C5253] focus:border-transparent"
+              className="w-full px-4 py-2 border rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#1C5253] focus:border-transparent"
               placeholder="Your Message"
               rows="5"
               required

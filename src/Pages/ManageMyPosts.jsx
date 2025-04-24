@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import AuthContext from "../Context/AuthContext";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import VolunteerRequestPosts from "./Components/VolunteerRequestPosts";
 import useAxios from "../hooks/useAxios";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
@@ -112,7 +111,7 @@ const ManageMyPosts = () => {
         </div>
       )}
 
-      <VolunteerRequestPosts />
+
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2'; // Importing SweetAlert2 for confirmation dialogs
 import AuthContext from '../../Context/AuthContext';
 import useAxios from '../../hooks/useAxios';
+import { FaSpinner } from 'react-icons/fa';
 
 const VolunteerRequestPosts = () => {
     const [posts, setPosts] = useState([]); // State to store posts data
@@ -93,11 +94,13 @@ const VolunteerRequestPosts = () => {
     if (loading) {
         return (
             <div className="flex justify-center items-center h-screen">
-                <p>Loading...</p> {/* Loading state */}
+                <div className="text-center">
+                    <FaSpinner className="animate-spin text-4xl text-blue-500 mx-auto mb-2" />
+                    <div className="text-gray-600">Loading your Request...</div>
+                </div>
             </div>
         );
     }
-
     if (error) {
         return (
             <div className="flex justify-center items-center h-screen">

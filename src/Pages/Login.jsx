@@ -67,7 +67,7 @@ const Login = () => {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50">
-            <div className="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg w-full max-w-4xl lg:w-3/4 flex flex-col lg:flex-row items-center animate__animated animate__fadeIn animate__delay-1s">
+            <div className="bg-gray-50 p-4 sm:p-6 md:p-8  w-full max-w-4xl lg:w-3/4 flex flex-col lg:flex-row items-center animate__animated animate__fadeIn animate__delay-1s">
                 {/* Lottie animation on the left side for lg screens */}
                 <div className="lg:w-1/2 w-full mb-6 lg:mb-0 flex justify-center">
                     <Lottie 
@@ -92,7 +92,7 @@ const Login = () => {
                                 type="email"
                                 id="email"
                                 name="email"
-                                className="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-md focus:ring-blue-500 focus:border-blue-500"
+                                className="mt-2 block bg-gray-100 w-full p-3 border border-gray-300 rounded-lg shadow-md focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="Enter your email"
                                 required
                             />
@@ -107,7 +107,7 @@ const Login = () => {
                                 type="password"
                                 id="password"
                                 name="password"
-                                className="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-md focus:ring-blue-500 focus:border-blue-500"
+                                className="mt-2 block bg-gray-100 w-full p-3 border border-gray-300 rounded-lg shadow-md focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="Enter your password"
                                 required
                             />

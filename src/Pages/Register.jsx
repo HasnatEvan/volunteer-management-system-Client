@@ -119,8 +119,8 @@ const Register = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-white p-4 sm:p-6 md:p-8 lg:p-10">
-            <div className="bg-white p-6 lg:p-10 rounded-xl shadow-2xl w-full max-w-4xl flex flex-col lg:flex-row items-center transition-transform duration-500">
+        <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4 sm:p-6 md:p-8 lg:p-10">
+            <div className="bg-gray-50 p-6 lg:p-10  w-full max-w-4xl flex flex-col lg:flex-row items-center transition-transform duration-500">
                 <div className="lg:w-1/2 mb-6 lg:mb-0 flex justify-center">
                     <Lottie options={options} height={220} width={220} />
                 </div>
@@ -137,7 +137,7 @@ const Register = () => {
                                 type="text"
                                 id="name"
                                 name="name"
-                                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                className="mt-1 block bg-gray-100 w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                                 placeholder="Enter your name"
                                 required
                             />
@@ -150,7 +150,7 @@ const Register = () => {
                                 type="email"
                                 id="email"
                                 name="email"
-                                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                className="mt-1 block bg-gray-100 w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                                 placeholder="Enter your email"
                                 required
                             />
@@ -163,7 +163,7 @@ const Register = () => {
                                 type="url"
                                 id="photoURL"
                                 name="photoUrl"
-                                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                className="mt-1 block w-full bg-gray-100 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                                 placeholder="Enter your photo URL"
                             />
                         </div>
@@ -175,7 +175,7 @@ const Register = () => {
                                 type="password"
                                 id="password"
                                 name="password"
-                                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                className="mt-1 block bg-gray-100 w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                                 placeholder="Enter your password"
                                 required
                             />

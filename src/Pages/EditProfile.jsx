@@ -5,10 +5,10 @@ import { updateProfile } from "firebase/auth";
 import auth from "../FireBase/FireBase";
 
 const EditProfile = () => {
-    const { user, updateUser } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [editable, setEditable] = useState(false);
     const [newName, setNewName] = useState(user?.displayName || "");
-    const [newEmail, setNewEmail] = useState(user?.email || "");
+    const [newEmail] = useState(user?.email || "");
 
     const handleEdit = () => {
         setEditable(!editable);
@@ -16,80 +16,78 @@ const EditProfile = () => {
 
     const handleSave = async () => {
         try {
-            // শুধু displayName আপডেট করা
             if (newName !== user?.displayName) {
                 await updateProfile(auth.currentUser, { displayName: newName });
             }
 
-            setEditable(false); // Save করার পর এডিট মোড বন্ধ
+            setEditable(false);
 
             Swal.fire({
-                title: "Success!",
+                title: "✅ Success!",
                 text: "Your profile has been updated.",
                 icon: "success",
                 confirmButtonText: "Okay",
-                showConfirmButton: true,  // নিশ্চিত বাটন কন্ট্রোল
-                willClose: () => {}  // সাউন্ড/আইকন বন্ধ করার জন্য
             });
         } catch (error) {
             console.error("Error updating profile:", error);
 
             Swal.fire({
-                title: "Error!",
+                title: "❌ Error!",
                 text: "There was an issue updating your profile.",
                 icon: "error",
                 confirmButtonText: "Try Again",
-                showConfirmButton: true,
-                willClose: () => {}  // সাউন্ড/আইকন বন্ধ করার জন্য
             });
         }
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="max-w-2xl p-12 space-y-8 bg-white rounded-lg shadow-lg dark:bg-gray-800 dark:text-white">
-                <div className="flex flex-col items-center space-y-6">
+        <div className="flex justify-center items-center min-h-screen bg-white px-4">
+            <div className="w-full max-w-xl p-8  bg-white space-y-8">
+                <div className="flex flex-col items-center space-y-4">
                     <img
                         src={user?.photoURL || "https://source.unsplash.com/150x150/?portrait?3"}
-                        alt="Profile Picture"
-                        className="w-48 h-48 rounded-full border-4 border-gray-300 dark:border-gray-500"
+                        alt="Profile"
+                        className="w-36 h-36 rounded-full border-4 border-teal-400"
                     />
-                    <div className="space-y-4 text-center">
-                        <h2 className="text-3xl font-semibold">
+                    <div className="w-full space-y-4">
+                        <div>
+                            <label className="block text-gray-600 font-medium mb-1">Full Name:</label>
                             {editable ? (
                                 <input
                                     type="text"
                                     value={newName}
                                     onChange={(e) => setNewName(e.target.value)}
-                                    className="p-3 rounded-md w-full text-lg"
+                                    className="w-full p-3 rounded-md border bg-gray-100 focus:outline-none focus:ring-2 focus:ring-teal-400"
                                 />
                             ) : (
-                                newName
+                                <p className="text-lg font-semibold text-gray-800">{newName}</p>
                             )}
-                        </h2>
-                        {/* ইমেইল ফিল্ড ডিসেবল করা */}
-                        <p className="text-sm text-gray-500">
+                        </div>
+                        <div>
+                            <label className="block text-gray-600 font-medium mb-1">Email:</label>
                             <input
                                 type="email"
                                 value={newEmail}
-                                onChange={(e) => setNewEmail(e.target.value)}
-                                className="p-3 rounded-md w-full text-lg"
                                 disabled
+                                className="w-full p-3 rounded-md border bg-gray-100 cursor-not-allowed text-gray-500"
                             />
-                        </p>
+                        </div>
                     </div>
                 </div>
-                <div className="flex justify-center space-x-6">
+
+                <div className="flex justify-center space-x-4 pt-4">
                     <button
                         onClick={handleEdit}
-                        className="px-6 py-3 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none"
+                        className={`px-6 py-2 rounded-md font-medium text-white transition duration-300 ${
+                            editable ? "bg-red-500 hover:bg-red-600" : "bg-blue-500 hover:bg-blue-600"
+                        }`}
                     >
                         {editable ? "Cancel" : "Edit"}
                     </button>
                     {editable && (
                         <button
                             onClick={handleSave}
-                            className="px-6 py-3 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none"
+                            className="px-6 py-2 rounded-md font-medium text-white bg-green-500 hover:bg-green-600 transition duration-300"
                         >
                             Save
                         </button>
