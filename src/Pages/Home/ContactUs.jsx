@@ -20,14 +20,14 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="bg-gray-50 py-12">
+    <div className="bg-white py-12">
       <div className="max-w-4xl mx-auto px-6">
         <h2 className="text-3xl font-bold text-center text-[#1C5253] mb-8">
           𝑪𝒐𝒏𝒕𝒂𝒄𝒕 𝑼𝒔
         </h2>
         <form
           onSubmit={handleSubmit}
-          className="bg-white p-8 rounded-lg shadow-lg"
+          className="bg-white p-8"
         >
           <div className="mb-4">
             <label
