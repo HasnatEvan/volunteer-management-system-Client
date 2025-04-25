@@ -3,6 +3,7 @@ import AuthContext from "../Context/AuthContext";
 import Swal from "sweetalert2";
 import { updateProfile } from "firebase/auth";
 import auth from "../FireBase/FireBase";
+import { FaCamera } from "react-icons/fa";
 
 const EditProfile = () => {
     const { user } = useContext(AuthContext);
@@ -40,15 +41,29 @@ const EditProfile = () => {
         }
     };
 
+    const handlePhotoClick = () => {
+        // Future: You can trigger a file input here
+        console.log("Change photo clicked");
+    };
+
     return (
         <div className="flex justify-center items-center min-h-screen bg-white px-4">
-            <div className="w-full max-w-xl p-8  bg-white space-y-8">
+            <div className="w-full max-w-xl p-8 bg-white space-y-8">
                 <div className="flex flex-col items-center space-y-4">
-                    <img
-                        src={user?.photoURL || "https://source.unsplash.com/150x150/?portrait?3"}
-                        alt="Profile"
-                        className="w-36 h-36 rounded-full border-4 border-teal-400"
-                    />
+                    <div className="relative w-36 h-36">
+                        <img
+                            src={user?.photoURL || "https://source.unsplash.com/150x150/?portrait?3"}
+                            alt="Profile"
+                            className="w-full h-full rounded-full border-4 border-teal-400 object-cover"
+                        />
+                        <div
+                            className="absolute inset-0 rounded-full bg-black bg-opacity-40 opacity-0 hover:opacity-100 flex items-center justify-center transition duration-300 cursor-pointer"
+                            onClick={handlePhotoClick}
+                        >
+                            <FaCamera className="text-white text-2xl" />
+                        </div>
+                    </div>
+
                     <div className="w-full space-y-4">
                         <div>
                             <label className="block text-gray-600 font-medium mb-1">Full Name:</label>

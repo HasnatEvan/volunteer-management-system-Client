@@ -74,12 +74,17 @@ const router = createBrowserRouter([
 
   {
     path: '/dashboard',
-    element: <Dashboard></Dashboard>,
+    element:<PrivateRoute> <Dashboard></Dashboard></PrivateRoute>,
     children:[
       {
         path:'/dashboard/all-Request',
-        element:<VolunteerRequestPosts></VolunteerRequestPosts>
+        element:<PrivateRoute><VolunteerRequestPosts></VolunteerRequestPosts></PrivateRoute>
+      },
+      {
+        path:'/dashboard/profile',
+        element:<EditProfile></EditProfile>
       }
+
     ]
   }
 ]);

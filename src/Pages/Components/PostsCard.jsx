@@ -6,17 +6,17 @@ const PostsCard = ({ volunteer }) => {
     const [showFullDetails, setShowFullDetails] = useState(false);
 
     return (
-        <div className="max-w-xs w-full mx-auto rounded-2xl overflow-hidden shadow-md bg-white border border-gray-100 transition-all hover:shadow-xl hover:scale-[1.03] sm:max-w-xs md:max-w-sm lg:max-w-md flex flex-col h-full">
+        <div className="max-w-xl w-full mx-auto rounded-2xl overflow-hidden shadow-md bg-white border border-gray-100 transition-all hover:shadow-xl hover:scale-[1.03] sm:max-w-xl md:max-w-2xl lg:max-w-3xl flex flex-col h-full">
             {/* Thumbnail Image */}
             <img
-                className="w-full h-40 object-cover rounded-t-2xl transition-transform duration-300 hover:scale-105"
+                className="w-full h-52 object-cover rounded-t-2xl transition-transform duration-300 hover:scale-105"
                 src={url}
                 alt={postTitle}
             />
 
             <div className="p-5 flex flex-col flex-grow">
                 {/* Title and Category */}
-                <h2 className="text-lg font-semibold text-gray-800 hover:text-[#1C5253] transition duration-200">
+                <h2 className="text-xl font-semibold text-gray-800 hover:text-[#1C5253] transition duration-200">
                     {postTitle}
                 </h2>
                 <p className="text-sm text-gray-500 mt-1 italic">{category}</p>
