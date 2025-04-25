@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { FaSpinner } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const VolunteerNeedsNow = () => {
@@ -25,7 +26,12 @@ const VolunteerNeedsNow = () => {
             </h2>
 
             {loading ? (
-                <p className="text-center text-gray-600 text-lg">Loading volunteer posts...</p>
+                <div className="flex justify-center items-center h-screen">
+                    <div className="text-center">
+                        <FaSpinner className="animate-spin text-4xl text-blue-500 mx-auto mb-2" />
+                        <div className="text-gray-600">Loading..</div>
+                    </div>
+                </div>
             ) : volunteers.length === 0 ? (
                 <p className="text-center text-gray-500 text-lg">No volunteer needs found at the moment.</p>
             ) : (
